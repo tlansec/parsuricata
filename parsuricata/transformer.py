@@ -1,7 +1,7 @@
 from ipaddress import ip_address, ip_interface
 from typing import Any, Union
 
-from lark import InlineTransformer, Token, Tree
+from lark import Transformer, v_args, Tree, Token
 
 from .rules import (
     Grouping,
@@ -19,7 +19,8 @@ from .rules import (
 )
 
 
-class RuleTransformer(InlineTransformer):
+@v_args(inline=True)
+class RuleTransformer(Transformer):
     str = str
 
     def rules(self, *rules):
